@@ -1,11 +1,10 @@
 # native imports
 import os
-import datetime
+from datetime import datetime
 import linecache
 # third-party imports 
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
-from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -14,67 +13,38 @@ from helpers import login_required, dbinit
 
 # Configure application
 app = Flask(__name__)
-
+dbinit()
+ 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-
-# Ensure responses aren't cached
-@app.after_request
-def after_request(response):
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+app.config["SECRET_KEY"] = "7895s48s9511s85z"
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///main.db")
 
-# Handle 404 Error - Not Found
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('errors/404.html'), 404
-
-# Handle 403 Error - Forbidden
-@app.errorhandler(403)
-def page_not_found(e):
-    return render_template('errors/403.html'), 403
-
-# Handle 500 Error - Internal Server Error
-@app.errorhandler(500)
-def page_not_found(e):
-    return render_template('errors/500.html'), 500
-
-# Handle 503 Error - Service Unavailable
-@app.errorhandler(503)
-def page_not_found(e):
-    return render_template('errors/503.html'), 503
-
-# Handle 504 Error - Gateway Timeout
-@app.errorhandler(504)
-def page_not_found(e):
-    return render_template('errors/504.html'), 504
-
 # Determine where user lands when opening the app
 @app.route("/", methods=["GET"])
 def index():
-    if session["user_id"]:
-        return redirect("/app")
-    else:
+    if session.get("user_id") is None:
         return render_template("app/landing.html")
+    else:
+        return redirect("/app")
+
 
 # Signup
 @app.route("/signup", methods=["POST"])
 def signup():
+    session.clear()
     # Get form inputs
+    email = request.form.get("email")
     username = request.form.get("username")
-    pin = request.form.get("pin")
+    password = request.form.get("password")
     # Check if username already exists
     check = db.execute("SELECT * FROM users WHERE username == :user", user=username)
     if len(check) != 0:
@@ -82,12 +52,12 @@ def signup():
         return redirect("/")
     else:
         # Sign user up
-        db.execute("INSERT INTO users (username, pin, pfp, premium, joined) VALUES (username, pin, pfp, premium, joined)",
+        db.execute("INSERT INTO users (username, email, pwd, pfp, premium) VALUES (:username, :email, :pwd, :pfp, :premium)",
             username = username,
-            pin = generate_password_hash(pin),
+            email = email,
+            pwd = generate_password_hash(password),
             pfp = "none",
-            premium = 1,
-            joined = datetime.now()
+            premium = "1"
         )
         # Sign user in
         current_user = db.execute("SELECT * FROM users WHERE username = :username", username=username)
@@ -120,8 +90,7 @@ def logout():
 
 # Main app interface
 @app.route("/app")
-@login_required
-def app():
+def app_view():
     # Get all information about the user
     current_user = db.execute("SELECT * FROM users WHERE id = :id", id=session["user_id"])
     user_id = current_user[0]["id"]
@@ -172,33 +141,33 @@ def app():
     total = happy + sad + neutral + anxious + angry + tired + depressed + emotional + sickly
     
     # Calculate percentages of moods for the month
-    phappy = round((happy / total) * 10)
-    psad = round((sad / total) * 10)
-    pneutral = round((neutral / total) * 10)
-    panxious= round((anxious / total) * 10)
-    pangry = round((angry / total) * 10)
-    ptired = round((tired / total) * 10)
-    pdepressed = round((depressed / total) * 10)
-    pemotional = round((emotional / total) * 10)
-    psickly = round((sickly / total) * 10)
+    if len(user_moods_month) != 0:
+        phappy = round((happy / total) * 10)
+        psad = round((sad / total) * 10)
+        pneutral = round((neutral / total) * 10)
+        panxious= round((anxious / total) * 10)
+        pangry = round((angry / total) * 10)
+        ptired = round((tired / total) * 10)
+        pdepressed = round((depressed / total) * 10)
+        pemotional = round((emotional / total) * 10)
+        psickly = round((sickly / total) * 10)
 
-    # Get suggestions from the suggestions.txt
-    depressed_suggestion = linecache.getline(r"/resources/suggestions.txt", 1)
-    happy_suggestion = linecache.getline(r"/resources/suggestions.txt", 2)
-    mixed_suggestion = linecache.getline(r"/resources/suggestions.txt", 3)
+        # Get suggestions from the suggestions.txt
+        depressed_suggestion = linecache.getline(r"/resources/suggestions.txt", 1)
+        happy_suggestion = linecache.getline(r"/resources/suggestions.txt", 2)
+        mixed_suggestion = linecache.getline(r"/resources/suggestions.txt", 3)
 
-    # If you are depressed more than fifty percent of the time:
-    if pdepressed >= 50:
-        msg = depressed_suggestion
-    # If you are happy more than fifty percent of the time:
-    elif phappy >= 50:
-        msg = happy_suggestion
-    # Or else:
-    else:
-        msg = mixed_suggestion
-
-    # Render template with all required information
-    return render_template("index.html", 
+        # If you are depressed more than fifty percent of the time:
+        if pdepressed >= 50:
+            msg = depressed_suggestion
+        # If you are happy more than fifty percent of the time:
+        elif phappy >= 50:
+            msg = happy_suggestion
+        # Or else:
+        else:
+            msg = mixed_suggestion
+        
+        return render_template("index.html", 
         current_user=current_user, 
         user_moods=user_moods, 
         user_gratitude=user_gratitude, 
@@ -222,7 +191,9 @@ def app():
         pemotional=pemotional, 
         pdepressed=pdepressed, 
         psickly=psickly, msg=msg
-    )
+        )
+    return render_template("app/index.html", current_user=current_user)
+
 
 # Adding moods for the day
 @app.route("/add-mood", methods=["POST"])
@@ -236,7 +207,7 @@ def add_mood():
     exercise = request.form.get("exercise")
 
     # Write inputs into table
-    db.execute("INSERT INTO moods (user_id, mood, note, diet, stress, exercise, created) VALUES (:user_id, :mood, :note, :diet, :stress, :exercise, :created)"
+    db.execute("INSERT INTO moods (user_id, mood, note, diet, stress, exercise, created) VALUES (:user_id, :mood, :note, :diet, :stress, :exercise, :created)",
         user_id = session["user_id"],
         mood = mood,
         note = note,
@@ -245,15 +216,7 @@ def add_mood():
         exercise = exercise,
         created = datetime.now()
     )
-    return 0
-
-
-    """
-    
-
-    """
-
-
+    return redirect("/")
 
 
 

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="background">
+    <div class="overlay">
+        <section id="_landing" class="state-visible state">
+            <div class="content-container">
+                <img src="#" alt="logo">
+                <p>Your mood-journaling companion</p>
+                <div class="sticky-bottom">
+                    <button data-target="_signup" class="state-button">Get Started</button>
+                    <p>Already have an account? <span class="state-button" data-target="_login">Login here.</span></p>
+                </div>
+            </div>
+        </section>
+        <section id="_signup" class="state-hidden state">
+            <div class="content-container-2">
+                <div class="sticky-bottom">
+                    <form action="/signup" method="POST">
+                        <input type="text" name="username" id="username" placeholder="username">
+                        <input type="email" name="email" id="email" placeholder="email">
+                        <input type="password" name="password" id="password" placeholder="password">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section id="_login" class="state-hidden state">
+            <div class="content-container-2">
+                <div class="sticky-bottom">
+                    <form action="">
+                        <input type="email" name="email" id="email" placeholder="email">
+                        <input type="password" name="password" id="password" placeholder="password">
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

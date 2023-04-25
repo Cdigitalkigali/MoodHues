@@ -1,0 +1,7 @@
+:root{
+    --primary_color: rgb(57, 0, 80);
+    --primary_color_transparent: rgba(57, 0, 80, .3);
+    --secondary_color: rgb(202, 137, 255);
+    --secondary_color_transparent: rgba(202, 137, 255, .7);
+    --tertiary_color: rgb(255, 255, 255);
+}

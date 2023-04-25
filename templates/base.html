@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>MoodHues</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/0e515ca39f.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <!-- Theme-Specific Stylesheet -->
+    {% if user_theme %}
+    <link rel="stylesheet" href="/static/css/themes/{{ user_theme }}">
+    {% else %}
+    <link rel="stylesheet" href="/static/css/themes/purple.css">
+    {% endif %}
+    <!-- Common Stylesheets -->
+    <link rel="stylesheet" href="/static/css/common.css">
 </head>
+
 <body>
-    
+    <!-- Content -->
+    {% block content %} {% endblock %}
     <!-- Third-Party Javascript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <!-- Local Javascript Scripts -->
     <script src="/static/js/views.js"></script>
     <script src="/static/js/validation.js"></script>
     <script src="/static/js/mood-graph.js"></script>
 </body>
+
 </html>
