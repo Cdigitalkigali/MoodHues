@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="background">
+    <div class="overlay">
+        <section id="_tour" class="state-visible state">
+            <div class="content-container-3">
+                <h2 style="text-align: right !important; color: white;">Quick Tour</h2>
+                <div class="big-div"></div>
+                <div class="small-div"></div>
+                <p style="text-align: center !important; color: white;" class="state-button" data-target="_addmood">Skip tour</p>
+            </div>
+        </section>
+        <section id="_addmood" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-user"></i>
+            </nav>
+            <div class="addmood-subnav">
+                <p><i class="fa-solid fa-calendar"></i>Today, 25th December</p>
+                <p><i class="fa-solid fa-clock"></i>15:00</p>
+            </div>
+            <div class="content-container-3">
+                <h1 class="addmood-header">Hi {{ current_user[0]["username"] }},<br>How are you today?</h1>
+                <form action="">
+                    <div class="radio-group">
+                        <!-- Emotional -->
+                        <div class="radio-item">
+                            <input type="radio" id="emotional" name="mood" value="emotional">
+					        <label id="emotional" for="emotional" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421184621.png" alt="emotional">
+                                <p>Emotional</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="neutral" name="mood" value="neutral">
+					        <label id="neutral" for="neutral" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421190458.png" alt="neutral">
+                                <p>Neutral</p>
+                            </label>
+                        </div>
+                        <!-- Sickly -->
+                        <div class="radio-item">
+                            <input type="radio" id="sickly" name="mood" value="sickly">
+					        <label id="sickly" for="sickly" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421193640.png" alt="sickly">
+                                <p>Sickly</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="depressed" name="mood" value="depressed">
+					        <label id="sad" for="sad" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421194359.png" alt="sad">
+                                <p>Depressed</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="tired" name="mood" value="tired">
+					        <label id="tired" for="tired" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421190458.png" alt="neutral">
+                                <p>Tired</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="angry" name="mood" value="angry">
+					        <label id="angry" for="angry" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421194952.png" alt="neutral">
+                                <p>Angry</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="happy" name="mood" value="happy">
+					        <label id="neutral" for="neutral" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201217.png" alt="neutral">
+                                <p>Happy</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="sad" name="mood" value="sad">
+					        <label id="sad" for="sad" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201353.png" alt="neutral">
+                                <p>Sad</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="anxious" name="mood" value="anxious">
+					        <label id="anxious" for="anxious" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201624.png" alt="neutral">
+                                <p>Anxious</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="excited" name="mood" value="excited">
+					        <label id="excited" for="excited" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421203500.png" alt="neutral">
+                                <p>Excited</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="hopeful" name="mood" value="hopeful">
+					        <label id="hopeful" for="hopeful" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421204128.png" alt="neutral">
+                                <p>Hopeful</p>
+                            </label>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="radio-item">
+                            <input type="radio" id="determined" name="mood" value="determined">
+					        <label id="determined" for="determined" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421211406.png" alt="neutral">
+                                <p>Determined</p>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <br>
+                <button data-target="_" class="state-button" style="width: 80% !important; margin: 20px 10%;">Continue</button>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

@@ -1,18 +1,18 @@
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
-    pin TEXT,
+    email TEXT,
+    pwd TEXT,
     pfp TEXT,
-    premium INTEGER,
-    joined DATE,
-)
-CREATE TABLE gratitude(
+    premium TEXT
+);
+CREATE TABLE IF NOT EXISTS gratitude(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     content TEXT,
     created DATE
-)
-CREATE TABLE moods(
+);
+CREATE TABLE IF NOT EXISTS moods(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     mood TEXT,
@@ -20,6 +20,5 @@ CREATE TABLE moods(
     diet TEXT,
     stress TEXT,
     exercise TEXT,
-    created DATE,
-    note TEXT
-)
+    created DATE
+);
