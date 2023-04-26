@@ -7,17 +7,93 @@
                 <h2 style="text-align: right !important; color: white;">Quick Tour</h2>
                 <div class="big-div"></div>
                 <div class="small-div"></div>
-                <p style="text-align: center !important; color: white;" class="state-button" data-target="_addmood">Skip tour</p>
+                <p style="text-align: center !important; color: white;" class="state-button" data-target="_addmood">Skip
+                    tour</p>
+            </div>
+        </section>
+        <section id="_sidebar" class="state-hidden state">
+            <div class="content-container-3">
+                <i class="fa-solid fa-arrow-left state-button" data-target="_calendar" style="color: white;"></i>
+                <br>
+                <img src="https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png"
+                    alt="profile-image" class="profile-image">
+                <h1 class="name">{{ current_user[0]["username"]}}</h1>
+                <p class="email">{{ current_user[0]["email"] }}</p>
+                <span class="btn-secondary state-button"><a href="/logout">Logout</a></span>
+                <br>
+                <hr><br>
+                <h3 class="sidelink state-button" style="color: gold;" data-target="_getpremium">Get Premium</h3>
+                <h3 class="sidelink state-button" data-target="_donate">Donate</h3>
+                <h3 class="sidelink state-button" data-target="_themes">Themes</h3>
+                <h3 class="sidelink state-button" data-target="_yip">Year in Pixels</h3>
+                <h3 class="sidelink state-button" data-target="_feedback">Give feedback</h3>
+                <h3 class="sidelink state-button" data-target="_about">About the app</h3>
+            </div>
+        </section>
+        <section id="_donate" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-user state-button" data-target="_sidebar"></i>
+            </nav>
+            <div class="addmood-subnav">
+                <p>Donate</p>
+                <i class="fa-solid fa-plus state-button" data-target="_addjournal"></i>
+            </div>
+            <div class="content-container-3">
+                <div class="suggestions">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor cupiditate soluta illum esse quas
+                        corrupti quibusdam excepturi. Sit laboriosam possimus quisquam inventore, dolores, nesciunt
+                        voluptatum ducimus rem atque, mollitia at!</p>
+                </div>
+            </div>
+            <div class="bottomnav">
+                <span class="bottomnav-link state-button" data-target="_calendar"><i
+                        class="fa-solid fa-calendar"></i>Calendar</span>
+                <span class="bottomnav-link state-button" data-target="_analytics"><i
+                        class="fa-solid fa-chart-simple"></i>Analytics</span>
+                <span class="bottomnav-link bottomnav-middle state-button" data-target="_addmood"><i
+                        class="fa-solid fa-plus"></i></span>
+                <span class="bottomnav-link state-button" data-target="_journal"><i
+                        class="fa-solid fa-pen"></i>Journal</span>
+                <span class="bottomnav-link state-button" data-target="_getpremium"><i
+                        class="fa-solid fa-crown"></i>Premium</span>
+            </div>
+        </section>
+        <section id="_themes" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-arrow-left state-button" data-target="_sidebar" style="color: white;"></i>
+            </nav>
+            <div class="content-container-3">
+                <h1>Select a theme:</h1>
+                <form action="" method="post">
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="purple" name="theme" value="purple">
+                            <label id="purple" for="purple" class="themelabel"></label>
+                        </div>
+
+                        <div class="radio-item">
+                            <input type="radio" id="green" name="theme" value="green">
+                            <label id="green" for="green" class="themelabel"></label>
+                        </div>
+
+                        <div class="radio-item">
+                            <input type="radio" id="blue" name="theme" value="blue">
+                            <label id="blue" for="blue" class="themelabel"></label>
+                        </div>
+                    </div>
+                </form>
             </div>
         </section>
         <section id="_addmood" class="state-hidden state">
             <nav class="addmood-nav">
                 <img src="#" alt="logo">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-user state-button" data-target="_sidebar"></i>
             </nav>
-            <div class="addmood-subnav">
-                <p><i class="fa-solid fa-calendar"></i>Today, 25th December</p>
-                <p><i class="fa-solid fa-clock"></i>15:00</p>
+            <div class="addmood-subnav2">
+                <p><!--<i class="fa-solid fa-calendar ic"></i>--> Today, 25th December</p>
+                <p><!--<i class="fa-solid fa-clock ic"></i>--> 15:00</p>
             </div>
             <div class="content-container-3">
                 <h1 class="addmood-header">Hi {{ current_user[0]["username"] }},<br>How are you today?</h1>
@@ -26,103 +102,287 @@
                         <!-- Emotional -->
                         <div class="radio-item">
                             <input type="radio" id="emotional" name="mood" value="emotional">
-					        <label id="emotional" for="emotional" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421184621.png" alt="emotional">
+                            <label id="emotional" for="emotional" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421184621.png"
+                                    alt="emotional">
                                 <p>Emotional</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="neutral" name="mood" value="neutral">
-					        <label id="neutral" for="neutral" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421190458.png" alt="neutral">
+                            <label id="neutral" for="neutral" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421190458.png"
+                                    alt="neutral">
                                 <p>Neutral</p>
                             </label>
                         </div>
                         <!-- Sickly -->
                         <div class="radio-item">
                             <input type="radio" id="sickly" name="mood" value="sickly">
-					        <label id="sickly" for="sickly" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421193640.png" alt="sickly">
+                            <label id="sickly" for="sickly" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421193640.png"
+                                    alt="sickly">
                                 <p>Sickly</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="depressed" name="mood" value="depressed">
-					        <label id="sad" for="sad" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421194359.png" alt="sad">
+                            <label id="sad" for="sad" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421194359.png"
+                                    alt="sad">
                                 <p>Depressed</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="tired" name="mood" value="tired">
-					        <label id="tired" for="tired" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421190458.png" alt="neutral">
+                            <label id="tired" for="tired" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421190458.png"
+                                    alt="neutral">
                                 <p>Tired</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="angry" name="mood" value="angry">
-					        <label id="angry" for="angry" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421194952.png" alt="neutral">
+                            <label id="angry" for="angry" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421194952.png"
+                                    alt="neutral">
                                 <p>Angry</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="happy" name="mood" value="happy">
-					        <label id="neutral" for="neutral" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201217.png" alt="neutral">
+                            <label id="neutral" for="neutral" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201217.png"
+                                    alt="neutral">
                                 <p>Happy</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="sad" name="mood" value="sad">
-					        <label id="sad" for="sad" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201353.png" alt="neutral">
+                            <label id="sad" for="sad" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201353.png"
+                                    alt="neutral">
                                 <p>Sad</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="anxious" name="mood" value="anxious">
-					        <label id="anxious" for="anxious" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201624.png" alt="neutral">
+                            <label id="anxious" for="anxious" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421201624.png"
+                                    alt="neutral">
                                 <p>Anxious</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="excited" name="mood" value="excited">
-					        <label id="excited" for="excited" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421203500.png" alt="neutral">
+                            <label id="excited" for="excited" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421203500.png"
+                                    alt="neutral">
                                 <p>Excited</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="hopeful" name="mood" value="hopeful">
-					        <label id="hopeful" for="hopeful" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421204128.png" alt="neutral">
+                            <label id="hopeful" for="hopeful" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421204128.png"
+                                    alt="neutral">
                                 <p>Hopeful</p>
                             </label>
                         </div>
                         <!-- Neutral -->
                         <div class="radio-item">
                             <input type="radio" id="determined" name="mood" value="determined">
-					        <label id="determined" for="determined" class="moodlabel">
-                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421211406.png" alt="neutral">
+                            <label id="determined" for="determined" class="moodlabel">
+                                <img class="emoticon" src="/static/images/Emoji/Untitled412_20230421211406.png"
+                                    alt="neutral">
                                 <p>Determined</p>
                             </label>
                         </div>
                     </div>
                 </form>
                 <br>
-                <button data-target="_" class="state-button" style="width: 80% !important; margin: 20px 10%;">Continue</button>
+                <button data-target="_calendar" class="state-button"
+                    style="width: 70% !important; margin: 20px 15%;">Continue</button>
+            </div>
+        </section>
+        <section id="_calendar" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-user state-button" data-target="_sidebar"></i>
+            </nav>
+            <div class="addmood-subnav">
+                <p>My Mood Calendar</p>
+            </div>
+            <div class="content-container-3">
+                <div class="calendar">
+                    <div class="month">
+                        <ul>
+                            <li>August</li>
+                        </ul>
+                    </div>
+                    <!--
+                    <ul class="weekdays">
+                        <li>Mo</li>
+                        <li>Tu</li>
+                        <li>We</li>
+                        <li>Th</li>
+                        <li>Fr</li>
+                        <li>Sa</li>
+                        <li>Su</li>
+                    </ul>
+                -->
+                    <ul class="days">
+                        {% for i in range(30) %}
+                        <li>{{ i + 1 }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="suggestions">
+                    <h3>Your usual mood is: Happy!</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam tenetur velit blanditiis
+                        vitae aliquam dolor provident ipsum pariatur dolorem, quis quaerat sit asperiores quod, delectus
+                        architecto doloremque officia officiis corrupti?</p>
+                </div>
+                <div class="graph">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+            <div class="bottomnav">
+                <span class="bottomnav-link state-button" data-target="_calendar"><i
+                        class="fa-solid fa-calendar"></i></span>
+                <span class="bottomnav-link state-button" data-target="_analytics"><i
+                        class="fa-solid fa-chart-simple"></i></span>
+                <span class="bottomnav-link bottomnav-middle state-button" data-target="_addmood"><img src="/static/images/Emoji/Untitled412_20230421201217.png" alt="lol" width="50px" height="50px" style="margin-top: -5px;"></span>
+                <span class="bottomnav-link state-button" data-target="_journal"><i
+                        class="fa-solid fa-pen"></i></span>
+                <span class="bottomnav-link state-button" data-target="_getpremium"><i
+                        class="fa-solid fa-crown"></i></span>
+            </div>
+        </section>
+        <section id="_analytics" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-user state-button" data-target="_sidebar"></i>
+            </nav>
+            <div class="addmood-subnav">
+                <p>Analytics</p>
+            </div>
+            <div class="content-container-3">
+                <div class="suggestions">
+                    <h3>Your usual mood is: Happy!</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam tenetur velit blanditiis
+                        vitae aliquam dolor provident ipsum pariatur dolorem, quis quaerat sit asperiores quod, delectus
+                        architecto doloremque officia officiis corrupti?<br><br>Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Quidem voluptatem quaerat, ducimus officiis obcaecati libero culpa sed?
+                        Dolores fugit saepe vel incidunt unde ab reprehenderit! Inventore dolores quae illo impedit?</p>
+                </div>
+                <div class="graph">
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+            <div class="bottomnav">
+                <span class="bottomnav-link state-button" data-target="_calendar"><i
+                        class="fa-solid fa-calendar"></i></span>
+                <span class="bottomnav-link state-button" data-target="_analytics"><i
+                        class="fa-solid fa-chart-simple"></i></span>
+                <span class="bottomnav-link bottomnav-middle state-button" data-target="_addmood"><img src="/static/images/Emoji/Untitled412_20230421201217.png" alt="lol" width="50px" height="50px" style="margin-top: -5px;"></span>
+                <span class="bottomnav-link state-button" data-target="_journal"><i
+                        class="fa-solid fa-pen"></i></span>
+                <span class="bottomnav-link state-button" data-target="_getpremium"><i
+                        class="fa-solid fa-crown"></i></span>
+            </div>
+        </section>
+        <section id="_journal" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-user state-button" data-target="_sidebar"></i>
+            </nav>
+            <div class="addmood-subnav">
+                <p>My Gratitude Journal</p>
+                <i class="fa-solid fa-plus state-button" data-target="_addjournal"></i>
+            </div>
+            <div class="content-container-3">
+                <div class="suggestions">
+                    <p>Welcome to your gratitude journal! You can use this place to write down what you're grateful for
+                        every day, and anything else you might want to remember.</p>
+                </div>
+            </div>
+            <div class="bottomnav">
+                <span class="bottomnav-link state-button" data-target="_calendar"><i
+                        class="fa-solid fa-calendar"></i></span>
+                <span class="bottomnav-link state-button" data-target="_analytics"><i
+                        class="fa-solid fa-chart-simple"></i></span>
+                <span class="bottomnav-link bottomnav-middle state-button" data-target="_addmood"><img src="/static/images/Emoji/Untitled412_20230421201217.png" alt="lol" width="50px" height="50px" style="margin-top: -5px;"></span>
+                <span class="bottomnav-link state-button" data-target="_journal"><i
+                        class="fa-solid fa-pen"></i></span>
+                <span class="bottomnav-link state-button" data-target="_getpremium"><i
+                        class="fa-solid fa-crown"></i></span>
+            </div>
+                
+        </section>
+        <section id="_addjournal" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+            </nav>
+            <div class="addmood-subnav">
+                <p>New Journal Entry</p>
+                <i class="fa-solid fa-plus state-button" data-target="_addjournal"></i>
+            </div>
+            <div class="content-container-3">
+                <form action="" class="suggestions">
+                    <textarea name="entry" id="entry" class="gratitude-textbox" rows="10"
+                        placeholder="What made you feel happy today? Who/what are you grateful for? What would you like to remember from this day?"></textarea>
+                    <button type="" class="state-button" data-target="_journal" style="width: 100% !important;">Add
+                        entry</button>
+                </form>
+            </div>
+            <div class="bottomnav">
+                <span class="bottomnav-link state-button" data-target="_calendar"><i
+                        class="fa-solid fa-calendar"></i></span>
+                <span class="bottomnav-link state-button" data-target="_analytics"><i
+                        class="fa-solid fa-chart-simple"></i></span>
+                <span class="bottomnav-link bottomnav-middle state-button" data-target="_addmood"><img src="/static/images/Emoji/Untitled412_20230421201217.png" alt="lol" width="50px" height="50px" style="margin-top: -5px;"></span>
+                <span class="bottomnav-link state-button" data-target="_journal"><i
+                        class="fa-solid fa-pen"></i></span>
+                <span class="bottomnav-link state-button" data-target="_getpremium"><i
+                        class="fa-solid fa-crown"></i></span>
+            </div>
+        </section>
+        <section id="_getpremium" class="state-hidden state">
+            <nav class="addmood-nav">
+                <img src="#" alt="logo">
+                <i class="fa-solid fa-user state-button" data-target="_sidebar"></i>
+            </nav>
+            <div class="addmood-subnav">
+                <p>Get Premium</p>
+                <i class="fa-solid fa-plus state-button" data-target="_addjournal"></i>
+            </div>
+            <div class="content-container-3">
+                <div class="suggestions">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor cupiditate soluta illum esse quas
+                        corrupti quibusdam excepturi. Sit laboriosam possimus quisquam inventore, dolores, nesciunt
+                        voluptatum ducimus rem atque, mollitia at!</p>
+                </div>
+            </div>
+            <div class="bottomnav">
+                <span class="bottomnav-link state-button" data-target="_calendar"><i
+                        class="fa-solid fa-calendar"></i></span>
+                <span class="bottomnav-link state-button" data-target="_analytics"><i
+                        class="fa-solid fa-chart-simple"></i></span>
+                <span class="bottomnav-link bottomnav-middle state-button" data-target="_addmood"><img src="/static/images/Emoji/Untitled412_20230421201217.png" alt="lol" width="50px" height="50px" style="margin-top: -5px;"></span>
+                <span class="bottomnav-link state-button" data-target="_journal"><i
+                        class="fa-solid fa-pen"></i></span>
+                <span class="bottomnav-link state-button" data-target="_getpremium"><i
+                        class="fa-solid fa-crown"></i></span>
             </div>
         </section>
     </div>
